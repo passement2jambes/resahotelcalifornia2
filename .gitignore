@@ -7,3 +7,6 @@ yarn-error.log
 
 # OS files
 .DS_Store
+
+#db ini 
+db.ini
