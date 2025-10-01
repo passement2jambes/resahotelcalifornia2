@@ -27,10 +27,4 @@ mysqlconnexion.connect((err) => {
 app.use(express.json());
 app.use(express.urlencoded());
 
-
-// utiliser les routers
-app.get('/', (req, res) => {
-    res.render('accueil');
-});
-
 app.listen(3010, () => console.log('Bienvenue à l\'Hotel California !'))
