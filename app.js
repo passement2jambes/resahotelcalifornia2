@@ -33,6 +33,4 @@ app.get('/', (req, res) => {
     res.render('accueil');
 });
 
-
-
 app.listen(3010, () => console.log('Bienvenue à l\'Hotel California !'))
