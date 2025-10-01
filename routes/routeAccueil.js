@@ -1,7 +1,7 @@
 // création du routeur Express pour ce module
-const express = require('express');
+import express from 'express';
 const routeur = express.Router();
-const accueil = require('../models/modelAccueil');
+import accueil from '../models/modelAccueil.js';
 
 // route pour la page d'accueil
 routeur.get('/', (req, res) => {

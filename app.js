@@ -1,8 +1,8 @@
 // inclure les dépendances et middlewares
-const mysql = require('mysql2');
-const express = require('express');
-const ejs = require('ejs');
-const iniparser = require('iniparser');
+import mysql from 'mysql2/promise';
+import express from 'express';
+import ejs from 'ejs';
+import iniparser from 'iniparser';
 
 // activer les dépendances
 let configDB = iniparser.parseSync('./db.ini');
