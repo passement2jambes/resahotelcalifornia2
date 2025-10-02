@@ -5,7 +5,7 @@ import ejs from 'ejs';
 import iniparser from 'iniparser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
+import routeAccueil from './routes/routeAccueil.js'; 
 // reconstituer __dirname dans un module ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -36,5 +36,6 @@ let mysqlconnexion;
 // activer le middleware et lancer l'application sur le port 3060
 app.use(express.json());
 app.use(express.urlencoded());
+app.use('/', routeAccueil);
 
 app.listen(3010, () => console.log('Bienvenue à l\'Hotel California !'))
