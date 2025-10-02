@@ -3,25 +3,35 @@ import mysql from 'mysql2/promise';
 import express from 'express';
 import ejs from 'ejs';
 import iniparser from 'iniparser';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// reconstituer __dirname dans un module ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // activer les dépendances
-let configDB = iniparser.parseSync('./db.ini');
+let configDB = iniparser.parseSync('./config/configDB.ini');
 let app = express();
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(express.static('public'));
-let mysqlconnexion = mysql.createConnection({
-    host: configDB['dev']['host'],
-    user: configDB['dev']['user'],
-    password: configDB['dev']['password'],
-    database: configDB['dev']['database']
-});
+let mysqlconnexion;
 
-//vérification de connexion à la base de donnée
-mysqlconnexion.connect((err) => {
-    if (!err) console.log('BDD connectée.')
-    else console.log('BDD connexion échouée \n Erreur: ' + JSON.stringify(err))
-});
+(async () => {
+  try {
+    mysqlconnexion = await mysql.createConnection({
+      host: configDB['dev']['host'],
+      user: configDB['dev']['user'],
+      password: configDB['dev']['password'],
+      database: configDB['dev']['database']
+    });
+
+    console.log("BDD connectée ✅");
+  } catch (err) {
+    console.error("❌ BDD connexion échouée : ", err.message);
+  }
+})();
 
 // activer le middleware et lancer l'application sur le port 3060
 app.use(express.json());

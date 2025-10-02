@@ -9,4 +9,4 @@ yarn-error.log
 .DS_Store
 
 #db ini 
-db.ini
+configDB.ini
