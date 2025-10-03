@@ -4,11 +4,14 @@ import express from 'express';
 import ejs from 'ejs';
 import iniparser from 'iniparser';
 import { fileURLToPath } from 'url';
+import path from 'path';
 import { dirname } from 'path';
 import routeAccueil from './routes/routeAccueil.js'; 
+
+
 // reconstituer __dirname dans un module ES
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 // activer les dépendances
 let configDB = iniparser.parseSync('./config/configDB.ini');
