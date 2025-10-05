@@ -9,7 +9,7 @@ import configDB from '../config/configDB.js';
 class ModelChambres { // Création du modèle Chambre
     constructor(data) { // Utilisation du constructeur,data est un objet qui contient les propriétés de la chambre
         this.id = data.id;
-        this.numero = data.numero;
+        this.numero = data.numero; 
         this.capacite = data.capacite;
         this.disponibilite = data.disponibilite;
     }
@@ -39,3 +39,12 @@ class ModelChambres { // Création du modèle Chambre
     }
 
     //Mettre à jour une chambre
+
+    static async update(id, data) { // Méthode pour mettre à jour une chambre existante, id est l'identifiant de la chambre à mettre à jour, data est un objet contenant les nouvelles propriétés de la chambre
+        await configDB.mysqlconnexion.execute('UPDATE chambres SET numero = ?, capacite = ?, disponibilite = ? WHERE id = ?',
+        [data.numero, data.capacite, data.disponibilite, id]); // Requête SQL pour mettre à jour une chambre
+    }
+
+    //Supprimer une chambre
+    
+}
