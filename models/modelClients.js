@@ -18,7 +18,7 @@ class ModelClients {
     }
 
     // Récupère un client par id
-    static async findbyid(id) {
+    static async findbyid(id_client) {
         const [rows] = await configDB.mysqlconnexion.execute('SELECT * FROM clients WHERE id = ?', [id]);
         if (rows.length === 0) {
             return null;
@@ -35,7 +35,7 @@ class ModelClients {
     }
 
     // Met à jour un client existant
-    static async update(id, data) {
+    static async update(id_client, data) {
         await configDB.mysqlconnexion.execute(
             'UPDATE clients SET nom = ?, prenom = ?, email = ?, telephone = ? WHERE id = ?',
             [data.nom, data.prenom, data.email, data.telephone, id]
@@ -43,7 +43,7 @@ class ModelClients {
     }
 
     // Supprime un client
-    static async delete(id) {
+    static async delete(id_client) {
         await configDB.mysqlconnexion.execute(
             'DELETE FROM clients WHERE id = ?',
             [id]
