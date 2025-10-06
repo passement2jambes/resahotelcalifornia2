@@ -8,5 +8,6 @@ yarn-error.log
 # OS files
 .DS_Store
 
-#db ini 
+#configDB ini 
 configDB.ini
+config/configDB.ini
