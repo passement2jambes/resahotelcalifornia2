@@ -3,7 +3,7 @@ import configDB from '../config/configDB.js';
 
 class ModelClients {
     constructor(data) {
-        this.id = data.id;
+        this.id_client = data.id_client;
         this.nom = data.nom;
         this.prenom = data.prenom;
         this.email = data.email;
