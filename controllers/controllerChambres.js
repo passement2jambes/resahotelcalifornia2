@@ -6,14 +6,14 @@ class ControllerChambres {
     //Afficher toutes les chambres
     static async listChambres(req, res) { // Méthode pour afficher toutes les chambres
         const chambres = await modelChambres.findall(); // Appelle la méthode findall du modèle pour récupérer toutes les chambres
-        res.render('chambres/list', {title : 'Voici la liste des chambres', chambres }); // Rend la vue 'list' en passant les chambres récupérées
+        res.render('chambres', {title : 'Toutes les chambres', chambres }); // Rend la vue 'list' en passant les chambres récupérées
     }
 
 
     //afficher une chambre
     static async chambreUnique(req, res) { // Méthode pour afficher une chambre unique
         const id = await modelChambres.findbyid(req.params.id); // Appelle la méthode findbyid du modèle pour récupérer une chambre par son ID
-        res.render('chambres/chambre', { title : 'Voici votre chambre', id, chambre }); // Rend la vue 'chambre' en passant la chambre récupérée 
+        res.render('chambres/uneSeule', { title : 'Voici votre chambre', id, chambre }); // Rend la vue 'chambre' en passant la chambre récupérée 
 
         if (!chambre) { // Si aucune chambre n'est trouvée
             res.status(404).send('Chambre non trouvée'); // Envoie une réponse 404
