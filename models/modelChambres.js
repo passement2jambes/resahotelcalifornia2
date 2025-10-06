@@ -8,7 +8,7 @@ import configDB from '../config/configDB.js';
 
 class ModelChambres { // Création du modèle Chambre
     constructor(data) { // Utilisation du constructeur,data est un objet qui contient les propriétés de la chambre
-        this.id = data.id;
+        this.chambre_id = data.chambre_id;
         this.numero = data.numero; 
         this.capacite = data.capacite;
         this.disponibilite = data.disponibilite;
@@ -48,3 +48,5 @@ class ModelChambres { // Création du modèle Chambre
     //Supprimer une chambre
     
 }
+
+export default ModelChambres; // Exportation du modèle Chambre pour l'utiliser dans d'autres fichiers
