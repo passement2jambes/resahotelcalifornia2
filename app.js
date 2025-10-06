@@ -6,6 +6,7 @@ import iniparser from 'iniparser';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { dirname } from 'path';
+
 import routeAccueil from './routes/routeAccueil.js'; 
 import routeClients from './routes/routeClients.js';
 
@@ -40,6 +41,7 @@ let mysqlconnexion;
 // activer le middleware et lancer l'application sur le port 3060
 app.use(express.json());
 app.use(express.urlencoded());
+
 app.use('/', routeAccueil);
 app.use('/', routeClients);
 

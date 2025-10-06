@@ -3,7 +3,7 @@
 //ce qu'il faut pour le modele du moins : acceder a la lsite chambres, ajouter une chambre, mdoifier une chambre, supprimer une chambre.
 
 import mysql from 'mysql2/promise';
-import configDB from '../config/configDB.js';
+import configDB from '../config/connexion.js';
 
 class ModelChambres { // Création du modèle Chambre
     constructor(data) { // Utilisation du constructeur,data est un objet qui contient les propriétés de la chambre
