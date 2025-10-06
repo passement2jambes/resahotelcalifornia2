@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise';
-import configDB from '../config/configDB.js';
+import configDB from '../config/connexion.js';
 
 class ModelClients {
     constructor(data) {

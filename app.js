@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { dirname } from 'path';
 import routeAccueil from './routes/routeAccueil.js'; 
+import routeClients from './routes/routeClients.js';
 
 
 // reconstituer __dirname dans un module ES
@@ -40,5 +41,8 @@ let mysqlconnexion;
 app.use(express.json());
 app.use(express.urlencoded());
 app.use('/', routeAccueil);
+app.use('/', routeClients);
 
 app.listen(3010, () => console.log('Bienvenue à l\'Hotel California !'))
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
