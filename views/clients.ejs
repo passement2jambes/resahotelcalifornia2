@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <% if (view === 'list') { %>
+    <h1><%= title %></h1>
+    <a href="/clients/create">Ajouter un client</a>
+    <ul>
+      <% (clients || []).forEach(c => { %>
+        <li>
+          <a href="/clients/<%= c.id %>"><%= c.nom %> <%= c.prenom %></a>
+          - <a href="/clients/update/<%= c.id %>">Modifier</a>
+          - <form action="/clients/delete/<%= c.id %>" method="post" style="display:inline;">
+              <button type="submit" onclick="return confirm('Confirmer la suppression ?');">Supprimer</button>
+            </form>
+        </li>
+      <% }) %>
+    </ul>
+
+  <% } else if (view === 'detail' && client) { %>
+    <h1><%= title %></h1>
+    <p><strong>Nom :</strong> <%= client.nom %></p>
+    <p><strong>Prénom :</strong> <%= client.prenom %></p>
+    <p><strong>Email :</strong> <%= client.email %></p>
+    <p><strong>Téléphone :</strong> <%= client.telephone %></p>
+    <p><a href="/clients">Retour à la liste</a></p>
+
+  <% } else if (view === 'create') { %>
+    <h1><%= title %></h1>
+    <form action="/clients/create" method="post">
+      <label>Nom : <input type="text" name="nom" required></label><br>
+      <label>Prénom : <input type="text" name="prenom" required></label><br>
+      <label>Email : <input type="email" name="email"></label><br>
+      <label>Téléphone : <input type="text" name="telephone"></label><br>
+      <button type="submit">Créer</button>
+    </form>
+    <p><a href="/clients">Annuler</a></p>
+
+  <% } else if (view === 'update' && client) { %>
+    <h1><%= title %></h1>
+    <form action="/clients/update/<%= client.id %>" method="post">
+      <label>Nom : <input type="text" name="nom" value="<%= client.nom %>" required></label><br>
+      <label>Prénom : <input type="text" name="prenom" value="<%= client.prenom %>" required></label><br>
+      <label>Email : <input type="email" name="email" value="<%= client.email %>"></label><br>
+      <label>Téléphone : <input type="text" name="telephone" value="<%= client.telephone %>"></label><br>
+      <button type="submit">Enregistrer</button>
+    </form>
+    <p><a href="/clients">Annuler</a></p>
+
+  <% } else { %>
+    <p>Vue inconnue ou données manquantes.</p>
+    <p><a href="/clients">Retour</a></p>
+  <% } %>
+</body>
+</html>

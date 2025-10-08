@@ -8,7 +8,6 @@ import path from 'path';
 import { dirname } from 'path';
 
 import routeAccueil from './routes/routeAccueil.js'; 
-import routeChambres from './routes/routeChambres.js';
 
 
 // reconstituer __dirname dans un module ES
@@ -37,6 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/', routeAccueil);
-app.use('/chambres', routeChambres);
 
 app.listen(3010, () => console.log('Bienvenue à l\'Hotel California !'))
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
