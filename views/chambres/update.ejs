@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier la chambre - <%= chambre.numero %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+
+        <div class="ui container" style="margin-top: 2em;">
+            <div class="ui segment">
+                <h1 class="ui header">
+                    <i class="bed icon"></i>
+                    <div class="content">
+                        Modifier la chambre n°<%= chambre.numero %>
+                            <div class="sub header">Mettez à jour les informations ci-dessous</div>
+                    </div>
+                </h1>
+
+                <form class="ui form" action="/chambres/update/<%= chambre.idChambre %>" method="POST">
+                    <div class="field">
+                        <label>Numéro de chambre</label>
+                        <input type="number" name="numero" value="<%= chambre.numero %>" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Capacité</label>
+                        <select class="ui dropdown" name="capacite" required>
+                            <option value="">Sélectionnez la capacité</option>
+                            <option value="1" <%=chambre.capacite==1 ? 'selected' : '' %>>1 personne</option>
+                            <option value="2" <%=chambre.capacite==2 ? 'selected' : '' %>>2 personnes</option>
+                            <option value="3" <%=chambre.capacite==3 ? 'selected' : '' %>>3 personnes</option>
+                            <option value="4" <%=chambre.capacite==4 ? 'selected' : '' %>>4 personnes</option>
+                            <option value="5" <%=chambre.capacite==5 ? 'selected' : '' %>>5 personnes</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Disponibilité</label>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="disponibilite" <%=chambre.disponibilite ? 'checked' : '' %>>
+                            <label>Chambre disponible</label>
+                        </div>
+                    </div>
+
+                    <div class="ui divider"></div>
+
+                    <div class="ui buttons">
+                        <a href="/chambres" class="ui button">Annuler</a>
+                        <div class="or" data-text="ou"></div>
+                        <button class="ui positive button" type="submit">
+                            <i class="save icon"></i>
+                            Mettre à jour la chambre
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+        <script>
+            // Initialiser les composants Semantic UI
+            $('.ui.dropdown').dropdown();
+            $('.ui.checkbox').checkbox();
+        </script>
+</body>
+
+</html>

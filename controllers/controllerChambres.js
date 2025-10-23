@@ -58,8 +58,17 @@ class ControllerChambres {
 
     //afficher le formulaire de modification de chambre
 
-    static async formUpdateChambre(req, res) { // Méthode pour afficher le formulaire de modification de chambre
-        res.render('chambres/update', { title: 'Modifier une chambre' }); // Rend la vue 'update' pour modifier une chambre
+    static async formUpdateChambre(req, res) {
+        try {
+            const chambre = await modelChambres.findbyid(req.params.id);
+            if (!chambre) {
+                return res.status(404).send('Chambre non trouvée');
+            }
+            res.render('chambres/update', { title: 'Modifier la chambre', chambre });
+        } catch (error) {
+            console.error('Erreur:', error);
+            res.status(500).send('Erreur serveur');
+        }
     }
 
     //mettre à jour une chambre
@@ -71,8 +80,13 @@ class ControllerChambres {
             capacite: req.body.capacite,
             disponibilite: req.body.disponibilite
         };
-        await modelChambres.update(id, data); // Appelle la méthode update du modèle pour mettre à jour une chambre
-        res.redirect('/chambres'); // Redirige vers la liste des chambres après la mise à jour
+        try {
+            await modelChambres.update(id, data); // Appelle la méthode update du modèle pour mettre à jour une chambre
+            res.redirect('/chambres'); // Redirige vers la liste des chambres après la mise à jour
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour:', error);
+            res.status(500).send('Erreur lors de la mise à jour de la chambre');
+        }
     }
 
     //supprimer une chambre
