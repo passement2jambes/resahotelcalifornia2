@@ -6,7 +6,7 @@ import connexion from '../config/connexion.js';
 class ModelChambres { // Création du modèle Chambre
     constructor(data) { // Utilisation du constructeur,data est un objet qui contient les propriétés de la chambre
         this.chambre_id = data.chambre_id;
-        this.numero = data.numero; 
+        this.numero = data.numero;
         this.capacite = data.capacite;
         this.disponibilite = data.disponibilite;
     }
@@ -25,25 +25,25 @@ class ModelChambres { // Création du modèle Chambre
 
     //Recupére une chambre par son id
 
-    static async findbyid(id) { // Méthode pour récupérer une chambre par son ID
+    static async findbyid(id) {
         try {
-            const [rows] = await connexion.execute('SELECT * FROM chambres WHERE id = ?'); // Requête SQL pour sélectionner une chambre par son ID
-            return rows.lenght > 0 ? new ModelChambres(rows[0]) : null; // Si une chambre est trouvée, retourne un objet chambre, sinon retourne null
+            const [rows] = await connexion.execute('SELECT * FROM chambres WHERE idChambre = ?', [id]);
+            return rows.length > 0 ? new ModelChambres(rows[0]) : null;
         }
         catch (error) {
             throw new Error('Erreur lors de la récupération de la chambre: ' + error.message);
         }
-    } 
+    }
 
     //Créer une chambre
 
     static async create(data) { // Méthode pour créer une nouvelle chambre
-        try { 
+        try {
             const [result] = await connexion.execute('INSERT INTO chambres (numero, capacite, disponibilite) VALUES (?, ?, ?)',
-            [data.numero, data.capacite, data.disponibilite]
-        ); // Requête SQL pour insérer une nouvelle chambre
-        return result.insertId; // Retourne l'ID de la nouvelle chambre créée
-    }
+                [data.numero, data.capacite, data.disponibilite]
+            ); // Requête SQL pour insérer une nouvelle chambre
+            return result.insertId; // Retourne l'ID de la nouvelle chambre créée
+        }
         catch (error) {
             if (error.code === 'ER_DUP_ENTRY') {
                 throw new Error('Erreur : Le numéro de chambre existe déjà.');
@@ -54,10 +54,12 @@ class ModelChambres { // Création du modèle Chambre
 
     //Mettre à jour une chambre
 
-    static async update(id, data) { // Méthode pour mettre à jour une chambre existante, id est l'identifiant de la chambre à mettre à jour, data est un objet contenant les nouvelles propriétés de la chambre
+    static async update(id, data) {
         try {
-            await connexion.execute('UPDATE chambres SET numero = ?, capacite = ?, disponibilite = ? WHERE id = ?',
-        [data.numero, data.capacite, data.disponibilite, id]); // Requête SQL pour mettre à jour une chambre
+            await connexion.execute(
+                'UPDATE chambres SET numero = ?, capacite = ?, disponibilite = ? WHERE idChambre = ?',
+                [data.numero, data.capacite, data.disponibilite, id]
+            );
         }
         catch (error) {
             if (error.code === 'ER_DUP_ENTRY') {
@@ -68,10 +70,10 @@ class ModelChambres { // Création du modèle Chambre
     }
 
     //Supprimer une chambre
-    
+
     static async delete(id) {
         try {
-            await connexion.execute('DELETE FROM chambres WHERE id = ?', [id]);
+            await connexion.execute('DELETE FROM chambres WHERE idChambre = ?', [id]);
         } catch (error) {
             throw new Error('Erreur lors de la suppression de la chambre: ' + error.message);
         }

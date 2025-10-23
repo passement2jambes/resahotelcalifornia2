@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <%- include('../partials/navbar') %>
+
+    <div class="ui container" style="margin-top: 2em;">
+      <h1>
+        <%= title %>
+      </h1>
+
+      <a href="/chambres/create" class="ui primary button">
+        Ajouter une chambre
+      </a>
+
+      <div class="ui grid" style="margin-top: 2em;">
+        <% if (chambres && chambres.length> 0) { %>
+          <% chambres.forEach(function(ch) { %>
+            <div class="four wide column">
+              <div class="ui card">
+                <div class="content">
+                  <div class="header">Chambre n°<%= ch.numero %>
+                  </div>
+                  <div class="meta">
+                    <span>Capacité: <%= ch.capacite %> personnes</span>
+                  </div>
+                  <div class="description">
+                    Status: <%= ch.disponibilite ? 'Disponible' : 'Non disponible' %>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <div class="ui two buttons">
+                    <a href="/chambres/<%= ch.idChambre %>" class="ui basic green button">Voir</a>
+                    <a href="/chambres/update/<%= ch.idChambre %>" class="ui basic blue button">Modifier</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+              <% } else { %>
+                <div class="sixteen wide column">
+                  <div class="ui warning message">
+                    <p>Aucune chambre disponible.</p>
+                  </div>
+                </div>
+                <% } %>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+</body>
+
+</html>

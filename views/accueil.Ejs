@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <title>Hôtel Californien</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
-
-    <!-- Navbar -->
-    <div class="ui inverted menu">
-        <div class="header item">Hôtel Californien</div>
-        <a class="item">Accueil</a>
-        <a class="item">Chambres</a>
-        <a class="item">Clients</a>
-        <a class="item">Réservation</a>
-    </div>
+    <!-- inclure la navbar -->
+    <%- include('partials/navbar') %>
 
     <!-- Section d'accueil -->
-    <div class="ui vertical masthead center aligned segment"
-        style="background-color :grey; height:100vh;">
+    <div class="ui vertical masthead center aligned segment" style="background-color: grey; height:100vh;">
         <div class="ui text container" style="margin-top: 20%;">
             <h1 class="ui inverted header">Bienvenue à l'Hôtel Californien 🌴</h1>
             <h2>Un lieu magique où vos rêves deviennent réalité.</h2>
-            <div class="ui huge yellow button">Réserver maintenant <i class="right arrow icon"></i></div>
+            <a href="/reservations/create" class="ui huge yellow button">
+                Réserver maintenant <i class="right arrow icon"></i>
+            </a>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
 </body>
-
 </html>
