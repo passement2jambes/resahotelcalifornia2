@@ -1,8 +1,8 @@
 const configDB = {
     host: 'sql7.freesqldatabase.com',
-    user: 'sql7803974',
-    password: 'ZhvSkdgY76',
-    database: 'sql7803974',
+    user: 'sql7805348',
+    password: 'qPjbZwj9jl',
+    database: 'sql7805348',
 };
 
 export default configDB; 
